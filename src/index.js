@@ -52,7 +52,7 @@ client.on("guildMemberRemove", async (member) => {
   const canal = member.guild.channels.cache.find(
     channel =>
       channel.isTextBased() &&
-      channel.name === "saidas"
+      channel.name === "bye"
   );
 
   if (!canal) {
