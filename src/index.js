@@ -49,12 +49,9 @@ client.on("guildMemberRemove", async (member) => {
   // CANAL DA MENSAGEM
   // --------------------------------
 
-  const canal = member.guild.channels.cache.find(
-    channel =>
-      channel.isTextBased() &&
-      channel.name === "bye"
-  );
-
+  const CANAL_SAIDAS_ID = "1544837262817366126"
+const canal = member.guild.channels.cache.get(CANAL_SAIDAS_ID);
+  
   if (!canal) {
     console.log("❌ Canal #saidas não encontrado.");
     return;
