@@ -153,20 +153,24 @@ Só não demora muito pra voltar porque daqui a pouco
 
   try {
 
-    await canal.send(mensagem);
+    const partes = mensagem.match(/[\s\S]{1,1900}/g) || [];
+
+    for (const parte of partes) {
+        await canal.send(parte);
+    }
 
     console.log(
-      `✅ Mensagem de saída enviada para ${member.user.tag}`
+        `✅ Mensagem de saída enviada para ${member.user.tag}`
     );
 
-  } catch (error) {
+} catch (error) {
 
     console.error(
-      "❌ Não foi possível enviar a mensagem:",
-      error
+        "❌ Não foi possível enviar a mensagem:",
+        error
     );
 
-  }
+}
 
 });
 
