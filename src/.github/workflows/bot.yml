@@ -1,7 +1,9 @@
-name: Discord Bot
+
+name: resenha bot 3
 
 on:
   workflow_dispatch:
+
   push:
     branches:
       - main
@@ -11,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Baixar código
         uses: actions/checkout@v4
 
