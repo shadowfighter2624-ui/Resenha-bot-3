@@ -176,22 +176,48 @@ Só não demora muito pra voltar porque daqui a pouco
 // 💌 MENSAGEM NO PV
 try {
 
-    await member.user.send(
-        `💀 Você saiu do servidor.
+    console.log(`💌 Tentando enviar PV para ${member.user.tag}...`);
 
-A administração gostaria de informar que...
+    await member.user.send(`
+👋 **EI, VOCÊ AÍ.**
 
-**ninguém pediu sua saída, mas obrigado pela contribuição.** 😂`
-    );
+Então você realmente saiu do servidor... 😭
 
-    console.log(
-        `💌 PV enviado para ${member.user.tag}`
-    );
+A administração gostaria de informar que:
 
-} catch (erroDM) {
+📢 **Ninguém pediu sua saída, mas obrigado pela contribuição.** 😂
 
-    console.log("❌ ERRO AO ENVIAR PV:");
-    console.error(erroDM);
+Sua ausência será registrada no sistema como:
+
+📋 Motivo da saída:
+> "Saiu porque quis."
+
+📊 Impacto no servidor:
+> **Praticamente nenhum.** 🤡
+
+💔 Saudade:
+> **0,0007%**
+
+🎉 Resenha liberada:
+> **+100%**
+
+Enfim...
+
+Foi bom enquanto durou.
+
+Ou pelo menos foi alguma coisa. 😭😂
+
+👋 **Até nunca... ou até voltar escondido.**
+
+— Atenciosamente, ninguém. 🤡
+`);
+
+    console.log(`✅ PV enviado com sucesso para ${member.user.tag}!`);
+
+} catch (error) {
+
+    console.error(`❌ NÃO FOI POSSÍVEL ENVIAR PV PARA ${member.user.tag}.`);
+    console.error("Motivo:", error);
 
 }
 }
