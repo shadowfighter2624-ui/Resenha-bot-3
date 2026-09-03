@@ -49,7 +49,7 @@ client.on("guildMemberRemove", async (member) => {
   // CANAL DA MENSAGEM
   // --------------------------------
 
-  const CANAL_SAIDAS_ID = "1544837262817366126"
+  const CANAL_SAIDAS_ID = "1520963318792065034"
 const canal = member.guild.channels.cache.get(CANAL_SAIDAS_ID);
   
   if (!canal) {
