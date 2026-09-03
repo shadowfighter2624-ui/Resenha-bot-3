@@ -159,46 +159,41 @@ Só não demora muito pra voltar porque daqui a pouco
         await canal.send(parte);
     }
 
-    console.log(
-        `✅ Mensagem de saída enviada para ${member.user.tag}`
-    );
+    console.log(`✅ Mensagem de saída enviada para ${member.user.tag}`);
 
 } catch (error) {
 
-    console.error(
-        "❌ Não foi possível enviar a mensagem:",
-        error
-    );
+    console.error("❌ Não foi possível enviar a mensagem:", error);
 
 }
 
-  // 💌 MENSAGEM NO PV
+// 💌 MENSAGEM NO PV
 
 try {
 
     console.log(`💌 Tentando enviar PV para ${member.user.tag}...`);
 
     await member.user.send(`
-👋 **EI, VOCÊ AÍ.**
+🌟 **EI, VOCÊ AÍ.**
 
 Então você realmente saiu do servidor... 😭
 
 A administração gostaria de informar que:
 
-💔 **Ninguém pediu sua saída, mas obrigado pela contribuição.** 😏
+💗 **Ninguém pediu sua saída, mas obrigado pela contribuição.** 😂
 
 Sua ausência será registrada no sistema como:
 
-📋 Motivo da saída:
+📋 **Motivo da saída:**
 > "Saiu porque quis."
 
-📊 Impacto no servidor:
+📊 **Impacto no servidor:**
 > **Praticamente nenhum.** 🤡
 
-💗 Saudade:
+💗 **Saudade:**
 > **0,0007%**
 
-🎭 Resenha liberada:
+🎉 **Resenha liberada:**
 > **+100%**
 
 Enfim...
@@ -207,7 +202,7 @@ Foi bom enquanto durou.
 
 Ou pelo menos foi alguma coisa. 😂😭
 
-👋 **Até nunca... ou até voltar escondido.**
+🌟 **Até nunca... ou até voltar escondido.**
 
 — Atenciosamente, ninguém. 🤡
 `);
@@ -221,8 +216,10 @@ Ou pelo menos foi alguma coisa. 😂😭
 
 }
 
-// ================================
+});
+
+// ==============================
 // LOGIN
-// ================================
+// ==============================
 
 client.login(process.env.DISCORD_TOKEN);
