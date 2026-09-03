@@ -190,10 +190,10 @@ A administração gostaria de informar que...
 
 } catch (erroDM) {
 
-    console.log(
-        `⚠️ Não foi possível enviar PV para ${member.user.tag}.`
-    );
+    console.log("❌ ERRO AO ENVIAR PV:");
+    console.error(erroDM);
 
+}
 }
 
 });
