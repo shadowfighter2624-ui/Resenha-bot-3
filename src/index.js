@@ -172,8 +172,8 @@ Só não demora muito pra voltar porque daqui a pouco
 
 }
 
+  // 💌 MENSAGEM NO PV
 
-// 💌 MENSAGEM NO PV
 try {
 
     console.log(`💌 Tentando enviar PV para ${member.user.tag}...`);
@@ -185,7 +185,7 @@ Então você realmente saiu do servidor... 😭
 
 A administração gostaria de informar que:
 
-📢 **Ninguém pediu sua saída, mas obrigado pela contribuição.** 😂
+💔 **Ninguém pediu sua saída, mas obrigado pela contribuição.** 😏
 
 Sua ausência será registrada no sistema como:
 
@@ -195,24 +195,24 @@ Sua ausência será registrada no sistema como:
 📊 Impacto no servidor:
 > **Praticamente nenhum.** 🤡
 
-💔 Saudade:
+💗 Saudade:
 > **0,0007%**
 
-🎉 Resenha liberada:
+🎭 Resenha liberada:
 > **+100%**
 
 Enfim...
 
 Foi bom enquanto durou.
 
-Ou pelo menos foi alguma coisa. 😭😂
+Ou pelo menos foi alguma coisa. 😂😭
 
 👋 **Até nunca... ou até voltar escondido.**
 
 — Atenciosamente, ninguém. 🤡
 `);
 
-    console.log(`✅ PV enviado com sucesso para ${member.user.tag}!`);
+    console.log(`💌 PV enviado com sucesso para ${member.user.tag}!`);
 
 } catch (error) {
 
@@ -220,10 +220,6 @@ Ou pelo menos foi alguma coisa. 😭😂
     console.error("Motivo:", error);
 
 }
-}
-
-});
-
 
 // ================================
 // LOGIN
