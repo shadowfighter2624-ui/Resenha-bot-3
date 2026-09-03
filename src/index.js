@@ -172,7 +172,32 @@ Só não demora muito pra voltar porque daqui a pouco
 
 }
 
+
+// 💌 MENSAGEM NO PV
+try {
+
+    await member.user.send(
+        `💀 Você saiu do servidor.
+
+A administração gostaria de informar que...
+
+**ninguém pediu sua saída, mas obrigado pela contribuição.** 😂`
+    );
+
+    console.log(
+        `💌 PV enviado para ${member.user.tag}`
+    );
+
+} catch (erroDM) {
+
+    console.log(
+        `⚠️ Não foi possível enviar PV para ${member.user.tag}.`
+    );
+
+}
+
 });
+
 
 // ================================
 // LOGIN
