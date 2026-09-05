@@ -11,11 +11,23 @@ jobs:
       - name: Baixar arquivos do GitHub
         uses: actions/checkout@v4
 
-      - name: Preparar cache do npm
+      - name: Preparar npm
         run: |
-          mkdir -p .npm
-          touch .npm/.gitkeep
           echo "cache=.npm" > .npmrc
+
+      - name: Criar pasta de cache no Quaxly
+        env:
+          QUAXLY_HOST: ${{ secrets.QUAXLY_HOST }}
+          QUAXLY_PORT: ${{ secrets.QUAXLY_PORT }}
+          QUAXLY_USER: ${{ secrets.QUAXLY_USER }}
+          QUAXLY_PASSWORD: ${{ secrets.QUAXLY_PASSWORD }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq sshpass
+          sshpass -p "$QUAXLY_PASSWORD" sftp -o StrictHostKeyChecking=no -P "$QUAXLY_PORT" "$QUAXLY_USER@$QUAXLY_HOST" <<'EOF'
+          -mkdir .npm
+          bye
+          EOF
 
       - name: Enviar package.json
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
@@ -37,17 +49,6 @@ jobs:
           password: ${{ secrets.QUAXLY_PASSWORD }}
           local_path: './.npmrc'
           remote_path: '/'
-          sftp_only: true
-
-      - name: Enviar cache npm
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
-        with:
-          username: ${{ secrets.QUAXLY_USER }}
-          server: ${{ secrets.QUAXLY_HOST }}
-          port: ${{ secrets.QUAXLY_PORT }}
-          password: ${{ secrets.QUAXLY_PASSWORD }}
-          local_path: './.npm/*'
-          remote_path: '/.npm'
           sftp_only: true
 
       - name: Enviar src
