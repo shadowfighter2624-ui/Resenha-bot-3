@@ -25,9 +25,11 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq sshpass
           sshpass -p "$QUAXLY_PASSWORD" sftp -o StrictHostKeyChecking=no -P "$QUAXLY_PORT" "$QUAXLY_USER@$QUAXLY_HOST" <<'EOF'
-          -mkdir .npm
+                    -mkdir .npm
+          -mkdir .npm/_cacache
+          -mkdir .npm/_logs
           bye
-          EOF
+         EOF
 
       - name: Enviar package.json
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
