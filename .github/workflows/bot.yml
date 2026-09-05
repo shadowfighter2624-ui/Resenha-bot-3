@@ -1,26 +1,24 @@
-
-name: Discord Bot
+name: Testar Quaxly
 
 on:
   workflow_dispatch:
 
 jobs:
-  bot:
+  testar-sftp:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Start bot
+      - name: Testar conexão SFTP
         env:
-          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-        run: npm start
+          QUAXLY_HOST: ${{ secrets.QUAXLY_HOST }}
+          QUAXLY_PORT: ${{ secrets.QUAXLY_PORT }}
+          QUAXLY_USER: ${{ secrets.QUAXLY_USER }}
+          QUAXLY_PASSWORD: ${{ secrets.QUAXLY_PASSWORD }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq sshpass
+          sshpass -p "$QUAXLY_PASSWORD" sftp -o StrictHostKeyChecking=no -P "$QUAXLY_PORT" "$QUAXLY_USER@$QUAXLY_HOST" <<'EOF'
+          pwd
+          ls -la
+          bye
+          EOF
