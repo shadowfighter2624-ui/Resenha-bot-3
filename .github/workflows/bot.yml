@@ -1,24 +1,34 @@
-name: Testar Quaxly
+name: Enviar para Quaxly
 
 on:
   workflow_dispatch:
 
 jobs:
-  testar-sftp:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Testar conexão SFTP
-        env:
-          QUAXLY_HOST: ${{ secrets.QUAXLY_HOST }}
-          QUAXLY_PORT: ${{ secrets.QUAXLY_PORT }}
-          QUAXLY_USER: ${{ secrets.QUAXLY_USER }}
-          QUAXLY_PASSWORD: ${{ secrets.QUAXLY_PASSWORD }}
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq sshpass
-          sshpass -p "$QUAXLY_PASSWORD" sftp -o StrictHostKeyChecking=no -P "$QUAXLY_PORT" "$QUAXLY_USER@$QUAXLY_HOST" <<'EOF'
-          pwd
-          ls -la
-          bye
-          EOF
+      - name: Baixar arquivos do GitHub
+        uses: actions/checkout@v4
+
+      - name: Enviar package.json
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          username: ${{ secrets.QUAXLY_USER }}
+          server: ${{ secrets.QUAXLY_HOST }}
+          port: ${{ secrets.QUAXLY_PORT }}
+          password: ${{ secrets.QUAXLY_PASSWORD }}
+          local_path: './package.json'
+          remote_path: '/'
+          sftp_only: true
+
+      - name: Enviar src
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          username: ${{ secrets.QUAXLY_USER }}
+          server: ${{ secrets.QUAXLY_HOST }}
+          port: ${{ secrets.QUAXLY_PORT }}
+          password: ${{ secrets.QUAXLY_PASSWORD }}
+          local_path: './src/*'
+          remote_path: '/src'
+          sftp_only: true
